@@ -1,0 +1,29 @@
+<h2>Мій профіль</h2>
+<p>{{ name }}</p>
+<p>{{ favouriteGame }}</p>
+<p>{{ amountOfCats }}</p>
+<!-- <p>I {{ loveToAngular ? '' : "don't" }} like Angular</p> -->
+<p>
+  I
+  @if (!loveToAngular) {
+    don't
+  }
+  like Angular
+</p>
+
+<!-- <ul>
+  @for (champ of favouriteChampions; track champ) {
+    <li>{{ champ }}</li>
+  }
+</ul> -->
+
+<ul>
+  @for (champ of favouriteChampions; track champ.name) {
+    <li>
+      {{ champ.name }} - {{ champ.difficulty }}
+      @if (champ.isEnchanter) {
+        - Enchanter
+      }
+    </li>
+  }
+</ul>
