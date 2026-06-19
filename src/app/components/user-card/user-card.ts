@@ -41,4 +41,12 @@ export class UserCard {
       isEnchanter: true,
     },
   ];
+
+  addChampion() {
+    this.favouriteChampions.push({
+      name: 'Lulu',
+      difficulty: 'Medium',
+      isEnchanter: true,
+    });
+  }
 }
