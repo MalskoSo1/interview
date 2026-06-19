@@ -28,5 +28,8 @@
   }
 </ul>
 
-<button (click)="addChampion()">Add champion</button>
+<label for="nameOfChampion">Enter the champion's name:</label>
+<input id="nameOfChampion" placeholder="Name" [(ngModel)]="championForAdd" />
+
+<button type="submit" (click)="addChampion()">Add champion</button>
 <button (click)="removeLastChampion()">Remove last champion</button>
