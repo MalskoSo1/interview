@@ -43,10 +43,32 @@ export class UserCard {
   ];
 
   addChampion() {
+    if (this.favouriteChampions.some((champion) => champion.name === 'Lulu')) return;
     this.favouriteChampions.push({
       name: 'Lulu',
       difficulty: 'Medium',
       isEnchanter: true,
     });
   }
+
+  // removeLastChampion() {
+  //   if (this.favouriteChampions.length !== 0) {
+  //     this.favouriteChampions = this.favouriteChampions.slice(
+  //       0,
+  //       this.favouriteChampions.length - 1,
+  //     );
+  //   }
+  // }
+
+  removeLastChampion() {
+    if (this.favouriteChampions.length !== 0) {
+      this.favouriteChampions.splice(this.favouriteChampions.length - 1, 1);
+    }
+  }
+
+  // removeLastChampion() {
+  //   if (this.favouriteChampions.length !== 0) {
+  //     this.favouriteChampions.pop();
+  //   }
+  // }
 }
