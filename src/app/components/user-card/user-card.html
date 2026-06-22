@@ -11,6 +11,8 @@
   like Angular
 </p>
 
+<input placeholder="Name of champion" [(ngModel)]="search" (input)="searchForChampions()" />
+
 <!-- <ul>
   @for (champ of favouriteChampions; track champ) {
     <li>{{ champ }}</li>
@@ -18,7 +20,7 @@
 </ul> -->
 
 <ul>
-  @for (champ of favouriteChampions; track champ.name) {
+  @for (champ of listOfChampions; track champ.name) {
     <li>
       {{ champ.name }} - {{ champ.difficulty }}
       @if (champ.isEnchanter) {

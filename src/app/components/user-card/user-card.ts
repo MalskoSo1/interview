@@ -44,6 +44,19 @@ export class UserCard {
     },
   ];
 
+  listOfChampions: Champion[] = this.favouriteChampions;
+  searchForChampions() {
+    if (this.search !== '') {
+      this.listOfChampions = this.favouriteChampions.filter((champion) =>
+        champion.name.toLowerCase().includes(this.search.toLowerCase()),
+      );
+    } else {
+      this.listOfChampions = this.favouriteChampions;
+    }
+  }
+
+  search: string = '';
+
   addChampion() {
     if (this.championForAdd === '') {
       alert('Name can not be empty!');
@@ -60,6 +73,8 @@ export class UserCard {
       isEnchanter: true,
     });
     this.championForAdd = '';
+    this.search = '';
+    this.searchForChampions();
   }
 
   // removeLastChampion() {
