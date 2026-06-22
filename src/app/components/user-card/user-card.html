@@ -2,7 +2,6 @@
 <p>{{ name }}</p>
 <p>{{ favouriteGame }}</p>
 <p>{{ amountOfCats }}</p>
-<!-- <p>I {{ loveToAngular ? '' : "don't" }} like Angular</p> -->
 <p>
   I
   @if (!loveToAngular) {
@@ -11,23 +10,28 @@
   like Angular
 </p>
 
-<input placeholder="Name of champion" [(ngModel)]="search" (input)="searchForChampions()" />
-
-<!-- <ul>
-  @for (champ of favouriteChampions; track champ) {
-    <li>{{ champ }}</li>
-  }
-</ul> -->
+<input placeholder="Name of champion" [(ngModel)]="search" />
 
 <ul>
-  @for (champ of listOfChampions; track champ.name) {
+  @for (champ of filteredChampions; track champ.name) {
     <li>
       <p>
-        {{ champ.name }} - {{ champ.difficulty }}
+        @if (editingChampionName === champ.name) {
+          <input placeholder="Enter a new name" [(ngModel)]="newNameOfChampion" />
+        } @else {
+          {{ champ.name }}
+        }
+        - {{ champ.difficulty }}
         @if (champ.isEnchanter) {
           - Enchanter
         }
       </p>
+      @if (editingChampionName === champ.name) {
+        <button type="button" (click)="saveChampion()">Save</button>
+      } @else {
+        <button type="button" (click)="editChampion(champ.name)">Edit</button>
+      }
+
       <button type="button" (click)="deleteChampion(champ.name)">Delete</button>
     </li>
   }

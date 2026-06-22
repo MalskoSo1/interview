@@ -19,8 +19,10 @@ export class UserCard {
   amountOfCats: string = 'two cats';
   loveToAngular: boolean = true;
   championForAdd: string = '';
+  editingChampionName: string = '';
+  search: string = '';
+  newNameOfChampion: string = '';
 
-  // favouriteChampions: string[] = ['Nami', 'Janna', 'Yuumi'];
   favouriteChampions: Champion[] = [
     {
       name: 'Nami',
@@ -44,18 +46,15 @@ export class UserCard {
     },
   ];
 
-  listOfChampions: Champion[] = this.favouriteChampions;
-  searchForChampions() {
-    if (this.search !== '') {
-      this.listOfChampions = this.favouriteChampions.filter((champion) =>
-        champion.name.toLowerCase().includes(this.search.toLowerCase()),
-      );
-    } else {
-      this.listOfChampions = this.favouriteChampions;
+  get filteredChampions() {
+    if (!this.search) {
+      return this.favouriteChampions;
     }
-  }
 
-  search: string = '';
+    return this.favouriteChampions.filter((champion) =>
+      champion.name.toLowerCase().includes(this.search.toLowerCase()),
+    );
+  }
 
   addChampion() {
     if (this.championForAdd === '') {
@@ -74,33 +73,34 @@ export class UserCard {
     });
     this.championForAdd = '';
     this.search = '';
-    this.searchForChampions();
   }
 
   deleteChampion(name: string) {
     this.favouriteChampions = this.favouriteChampions.filter((champion) => champion.name !== name);
     this.search = '';
-    this.searchForChampions();
   }
 
-  // removeLastChampion() {
-  //   if (this.favouriteChampions.length !== 0) {
-  //     this.favouriteChampions = this.favouriteChampions.slice(
-  //       0,
-  //       this.favouriteChampions.length - 1,
-  //     );
-  //   }
-  // }
+  editChampion(name: string) {
+    this.editingChampionName = name;
+    this.newNameOfChampion = name;
+  }
+
+  saveChampion() {
+    const champ = this.favouriteChampions.find(
+      (champion) => champion.name === this.editingChampionName,
+    );
+
+    if (champ) {
+      champ.name = this.newNameOfChampion;
+    }
+
+    this.editingChampionName = '';
+    this.newNameOfChampion = '';
+  }
 
   removeLastChampion() {
     if (this.favouriteChampions.length !== 0) {
       this.favouriteChampions.splice(this.favouriteChampions.length - 1, 1);
     }
   }
-
-  // removeLastChampion() {
-  //   if (this.favouriteChampions.length !== 0) {
-  //     this.favouriteChampions.pop();
-  //   }
-  // }
 }
