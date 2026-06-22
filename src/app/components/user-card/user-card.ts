@@ -77,6 +77,12 @@ export class UserCard {
     this.searchForChampions();
   }
 
+  deleteChampion(name: string) {
+    this.favouriteChampions = this.favouriteChampions.filter((champion) => champion.name !== name);
+    this.search = '';
+    this.searchForChampions();
+  }
+
   // removeLastChampion() {
   //   if (this.favouriteChampions.length !== 0) {
   //     this.favouriteChampions = this.favouriteChampions.slice(

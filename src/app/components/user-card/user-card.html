@@ -22,10 +22,13 @@
 <ul>
   @for (champ of listOfChampions; track champ.name) {
     <li>
-      {{ champ.name }} - {{ champ.difficulty }}
-      @if (champ.isEnchanter) {
-        - Enchanter
-      }
+      <p>
+        {{ champ.name }} - {{ champ.difficulty }}
+        @if (champ.isEnchanter) {
+          - Enchanter
+        }
+      </p>
+      <button type="button" (click)="deleteChampion(champ.name)">Delete</button>
     </li>
   }
 </ul>
